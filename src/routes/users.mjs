@@ -8,6 +8,11 @@ import { resolveIndexByUserId } from "../utils/middlewares.mjs";
 
 const router = Router();
 
+router.get("/", (req, res) => {
+    res.cookie('hello', 'world', {maxAge: 900000, httpOnly: true});
+    res.send("Hello, World!");
+});
+
 router.get(
   "/api/users",
   query("filter")

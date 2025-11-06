@@ -1,18 +1,13 @@
 import express from "express";
-import usersRouter from "./routes/users.mjs";
+import routes from "./routes/users.mjs";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 
-
-const loggingMiddleware = (req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
-};
-
-app.use(loggingMiddleware);
-app.use(usersRouter);
+app.use(routes);
 
 
 const PORT = process.env.PORT || 3000;
